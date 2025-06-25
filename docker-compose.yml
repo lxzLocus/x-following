@@ -1,0 +1,11 @@
+services:
+  x-follow:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: x-follow
+    tty: true
+    volumes:
+      - type: bind
+        source: ./
+        target: /app

@@ -3,8 +3,11 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+      target: builder
     container_name: x-follow
     tty: true
+    stdin_open: true # コンテナの標準入力を開き続ける
+    command: tail -f /dev/null # コンテナを終了させないためのコマンド
     volumes:
       - type: bind
         source: ./

@@ -21,12 +21,15 @@ public class HomePage {
     /**
      * ログイン後に行う何らかの処理
      */
-    public void doSomethingAfterLogin() {
-        System.out.println("ホームページのタイムラインが表示されるのを待っています...");
-        // タイムラインの最初のツイートが表示されるまで待機
-        WebElement firstTweet = wait.until(ExpectedConditions.visibilityOfElementLocated(timelineArticle));
-
-        System.out.println("タイムラインの最初のツイートが取得できました。");
-        System.out.println("ツイート内容: " + firstTweet.getText().substring(0, 50) + "..."); // 長すぎるので最初の50文字だけ表示
+    public void doSomethingAfterLogin(WebDriver driver, String userName) {
+        String userNameNonAtMark = userName.startsWith("@") ? userName.substring(1) : userName; // @を除去
+        driver.get("https://x.com/home/" + userNameNonAtMark); //ユーザーページにアクセス
+        wait.until(ExpectedConditions.visibilityOfElementLocated(timelineArticle)); // タイムラインの記事
+        WebElement firstArticle = driver.findElement(timelineArticle);
+        if (firstArticle != null) {
+            System.out.println("最初のツイート: " + firstArticle.getText());
+        } else {
+            System.out.println("タイムラインにツイートが見つかりませんでした。");
+        }
     }
 }

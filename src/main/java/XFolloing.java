@@ -1,16 +1,19 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class XFolloing{
 
     public void execute() {
         /*
-         * 設定
-         */
+        * 設定
+        */
+        Dotenv dotenv = Dotenv.load(); // .envファイルを読み込む
+
         final String URL = "https://x.com/i/flow/login"; // XのログインページのURL
-        final String USER_NAME = "@Kurosuke_GTx_77"; // Xのユーザー名
-        final String PASSWORD = "your_password"; // Xのパスワード
+        final String USER_NAME = dotenv.get("USER_NAME"); // .envファイルから取得したXのユーザー名
+        final String PASSWORD = dotenv.get("USER_PASSWORD"); // .envファイルから取得したXのパスワード
 
         // --- WebDriverのセットアップ ---
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
@@ -28,12 +31,10 @@ public class XFolloing{
             driver.get(URL);
             LoginPage loginPage = new LoginPage(driver);
             // loginメソッドは成功するとUserPageオブジェクトを返す
-            LoginPage UserPage = loginPage.login(USER_NAME, PASSWORD);
-            System.out.println("ログイン処理が完了しました。");
+            UserPage userPage = loginPage.login(USER_NAME, PASSWORD);
 
             // --- ログイン後の処理 ---
-            System.out.println("ログイン後の操作を開始します。");
-            UserPage.doSomethingAfterLogin(); // 例：タイムラインの最初のツイートを取得
+            userPage.doSomethingAfterLogin(driver, USER_NAME); // 例：タイムラインの最初のツイートを取得
 
             System.out.println("ログイン後の操作が完了しました。");
 

@@ -2,13 +2,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class XFollowTest {
+public class XFolloing{
 
     public void execute() {
         /*
          * 設定
          */
-        final String URL = "https://x.com/login"; // XのログインページのURL
+        final String URL = "https://x.com/i/flow/login"; // XのログインページのURL
         final String USER_NAME = "@Kurosuke_GTx_77"; // Xのユーザー名
         final String PASSWORD = "your_password"; // Xのパスワード
 
@@ -21,19 +21,19 @@ public class XFollowTest {
         options.addArguments("--window-size=1920,1080");
         WebDriver driver = new ChromeDriver(options);
 
-        System.out.println("テストを開始します。");
+        System.out.println("処理を開始します。");
 
         try {
             // --- ログイン処理 ---
             driver.get(URL);
             LoginPage loginPage = new LoginPage(driver);
-            // loginメソッドは成功するとHomePageオブジェクトを返す
-            HomePage homePage = loginPage.login(USER_NAME, PASSWORD);
+            // loginメソッドは成功するとUserPageオブジェクトを返す
+            LoginPage UserPage = loginPage.login(USER_NAME, PASSWORD);
             System.out.println("ログイン処理が完了しました。");
 
             // --- ログイン後の処理 ---
             System.out.println("ログイン後の操作を開始します。");
-            homePage.doSomethingAfterLogin(); // 例：タイムラインの最初のツイートを取得
+            UserPage.doSomethingAfterLogin(); // 例：タイムラインの最初のツイートを取得
 
             System.out.println("ログイン後の操作が完了しました。");
 

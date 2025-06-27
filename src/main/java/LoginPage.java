@@ -29,9 +29,9 @@ public class LoginPage {
      * 
      * @param username ユーザー名
      * @param password パスワード
-     * @return ログイン成功後に表示されるHomePageのインスタンス
+     * @return ログイン成功後に表示されるUserPageのインスタンス
      */
-    public HomePage login(String username, String password) {
+    public UserPage login(String username, String password) {
         // ユーザー名入力
         System.out.println("ユーザー名入力フィールドを待機しています...");
         WebElement userField = wait.until(ExpectedConditions.visibilityOfElementLocated(usernameInput));
@@ -51,7 +51,7 @@ public class LoginPage {
         wait.until(ExpectedConditions.elementToBeClickable(nextLoginButton)).click();
 
         // ログインが完了し、ホームページに遷移したことを前提に
-        // HomePageのインスタンスを生成して返す
-        return new HomePage(driver);
+        // UserPageのインスタンスを生成して返す
+        return new UserPage(driver);
     }
 }

@@ -14,7 +14,9 @@ public class LoginPage {
     // ページ上の要素 (X.comのログインフローに合わせて変更)
     private By usernameInput = By.xpath("//*[@id=\"layers\"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div/div[4]/label/div/div[2]/div/input");
     private By nextButton = By.xpath("//*[@id=\"layers\"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div/button[2]/div");
-    private By passwordInput = By.xpath("//*[@id=\"layers\"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div[3]/div/label/div/div[2]/div[1]/input");
+    private By userEmail = By.xpath("//*[@id=\"react-root\"]/div/div/div/main/div/div/div/div[2]/div[2]/div[1]/div/div/div[2]/label/div/div[2]/div/input");
+    private By nextUserEmail = By.xpath("//*[@id=\"react-root\"]/div/div/div/main/div/div/div/div[2]/div[2]/div[2]/div/div/div/div/button/div");
+    private By passwordInput = By.xpath("//input[@type='password']");
     private By nextLoginButton = By.xpath("//*[@id=\"layers\"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[2]/div/div[1]/div/div/button");
     private By twoFactor = By.xpath("//*[@id=\"layers\"]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div[2]/label/div/div[2]/div/input");
     private By twoFactorButton = By.xpath("/html/body/div[1]/div/div/div[1]/div[2]/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[2]/div/div/div/button/div");
@@ -38,6 +40,7 @@ public class LoginPage {
         // ユーザー名入力
         WebElement userField = wait.until(ExpectedConditions.visibilityOfElementLocated(usernameInput));
         userField.sendKeys(username);
+        System.out.printf("入力ユーザ名：%s\n", username);
 
         // 「次へ」ボタンをクリック
         wait.until(ExpectedConditions.elementToBeClickable(nextButton)).click();
@@ -45,6 +48,7 @@ public class LoginPage {
         // パスワード入力
         WebElement passField = wait.until(ExpectedConditions.visibilityOfElementLocated(passwordInput));
         passField.sendKeys(password);
+        System.out.printf("入力パスワード：%s\n", password);
 
         // 「ログイン」ボタンをクリック
         wait.until(ExpectedConditions.elementToBeClickable(nextLoginButton)).click();

@@ -1,5 +1,4 @@
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -34,14 +33,6 @@ public class UserPage {
         // タイムラインの最初の記事を取得
         // *[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[3]/div/div/section/div/div/div[1]
 
-        // *[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[3]/div/div/section/div/div/div[3]/div/div/article/div/div/div[1]/div/div/div/div/div[2]/div/div/div
-        //二つに分かれる
-        // div/div/div/div/div[2]/div/div/div
-
-
-        
-
-        // *[@id="react-root"]/div/div/div[2]/main/div/div/div/div/div/div[3]/div/div/section/div/div/div[3]/div/div/article/div/div/div[2]
-        WebElement firstArticle = driver.findElement(tweetsArticleDiv);
+        //([1].innerText === 'You retweeted');
     }
 }
